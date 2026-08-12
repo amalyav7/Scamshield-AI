@@ -181,7 +181,7 @@ Message to analyze:
         try:
             with st.spinner("ScamShield is analyzing the message..."):
                 response = client.chat(
-                    model="qwen3.5:cloud",
+                    model="gemma3:1b",
                     messages=[
                         {
                             "role": "user",
