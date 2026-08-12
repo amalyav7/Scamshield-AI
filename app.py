@@ -6,7 +6,7 @@ from ollama import Client
 st.set_page_config(
     page_title="ScamShield",
     page_icon="🛡️",
-    layout="centered"
+    layout="wide"
 )
 
 # -----------------------------
@@ -34,11 +34,11 @@ st.markdown(
 
     /* Space above the whole design so it does NOT touch the top */
     .block-container {
-        max-width: 900px;
-        padding-top: 5rem;
-        padding-bottom: 3rem;
-        padding-left: 1rem;
-        padding-right: 1rem;
+        max-width: 1180px;
+        padding-top: 4rem;
+        padding-bottom: 3.5rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
     }
 
     h1, h2, h3, p, label, .stMarkdown, span {
@@ -49,8 +49,8 @@ st.markdown(
     [data-testid="stVerticalBlockBorderWrapper"] {
         background: var(--outer-card) !important;
         border: 1.5px solid var(--border-sage) !important;
-        border-radius: 24px !important;
-        box-shadow: 0 8px 22px rgba(55, 77, 42, 0.06) !important;
+        border-radius: 30px !important;
+        box-shadow: 0 12px 30px rgba(55, 77, 42, 0.08) !important;
         overflow: hidden !important;
     }
 
@@ -63,7 +63,7 @@ st.markdown(
     .scam-header {
         background: linear-gradient(180deg, #EEF2D6 0%, #F3F5DE 100%);
         text-align: center;
-        padding: 1.45rem 1.3rem 1.25rem;
+        padding: 2.4rem 2rem 2rem;
         margin: 0;
     }
 
@@ -71,16 +71,16 @@ st.markdown(
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.6rem;
+        gap: 0.9rem;
     }
 
     .brand-icon {
-        font-size: 2.35rem;
+        font-size: 3.2rem;
         line-height: 1;
     }
 
     .brand-title {
-        font-size: clamp(2rem, 4.5vw, 2.8rem);
+        font-size: clamp(2.8rem, 5vw, 4rem);
         font-weight: 800;
         line-height: 1;
         letter-spacing: -0.025em;
@@ -88,16 +88,16 @@ st.markdown(
     }
 
     .brand-subtitle {
-        margin-top: 0.55rem;
-        font-size: clamp(1.05rem, 2.1vw, 1.4rem);
+        margin-top: 0.8rem;
+        font-size: clamp(1.35rem, 2.4vw, 1.9rem);
         font-weight: 700;
     }
 
     .brand-copy {
-        margin: 0.7rem auto 0;
-        max-width: 600px;
-        font-size: 0.96rem;
-        line-height: 1.5;
+        margin: 1rem auto 0;
+        max-width: 760px;
+        font-size: 1.12rem;
+        line-height: 1.6;
     }
 
     .header-divider {
@@ -108,23 +108,23 @@ st.markdown(
 
     /* Body space under header */
     .form-spacer {
-        height: 0.9rem;
+        height: 1.4rem;
     }
 
     /* NESTED GREEN INPUT PANEL */
     [data-testid="stVerticalBlockBorderWrapper"]
     [data-testid="stVerticalBlockBorderWrapper"] {
-        margin: 0 0.85rem 0.85rem !important;
-        background: linear-gradient(180deg, #EFF3DA 0%, #EDF2D5 100%) !important;
-        border: 1.3px solid #D7E0BE !important;
-        border-radius: 16px !important;
+        margin: 0 1.4rem 1.4rem !important;
+        background: linear-gradient(180deg, #DCE9B8 0%, #D6E4AE 100%) !important;
+        border: 2px solid #AFC388 !important;
+        border-radius: 22px !important;
         box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18) !important;
         overflow: visible !important;
     }
 
     [data-testid="stVerticalBlockBorderWrapper"]
     [data-testid="stVerticalBlockBorderWrapper"] > div {
-        padding: 1rem 1.1rem 1.05rem !important;
+        padding: 1.7rem 1.8rem 1.8rem !important;
     }
 
     .stSelectbox label,
@@ -132,7 +132,7 @@ st.markdown(
     .stTextArea label {
         font-weight: 650 !important;
         color: var(--ink) !important;
-        font-size: 0.98rem !important;
+        font-size: 1.1rem !important;
     }
 
     div[data-baseweb="select"] > div,
@@ -146,15 +146,15 @@ st.markdown(
     }
 
     div[data-baseweb="select"] > div {
-        min-height: 48px;
+        min-height: 58px;
     }
 
     .stTextInput input {
-        min-height: 46px;
+        min-height: 56px;
     }
 
     .stTextArea textarea {
-        min-height: 170px !important;
+        min-height: 220px !important;
     }
 
     div[data-baseweb="select"] > div:focus-within,
@@ -165,13 +165,13 @@ st.markdown(
     }
 
     .stButton > button {
-        min-height: 48px;
+        min-height: 58px;
         border: none !important;
         border-radius: 8px !important;
         background: linear-gradient(90deg, var(--forest) 0%, var(--forest-dark) 100%) !important;
         color: white !important;
         font-weight: 700 !important;
-        font-size: 1rem !important;
+        font-size: 1.15rem !important;
         box-shadow: 0 5px 12px rgba(36, 73, 29, 0.16);
     }
 
@@ -186,9 +186,9 @@ st.markdown(
 
     @media (max-width: 640px) {
         .block-container {
-            padding-top: 2.75rem;
-            padding-left: 0.65rem;
-            padding-right: 0.65rem;
+            padding-top: 2rem;
+            padding-left: 0.7rem;
+            padding-right: 0.7rem;
         }
 
         [data-testid="stVerticalBlockBorderWrapper"] {
@@ -196,15 +196,15 @@ st.markdown(
         }
 
         .scam-header {
-            padding: 1.15rem 0.85rem 1rem;
+            padding: 1.5rem 1rem 1.25rem;
         }
 
         .brand-icon {
-            font-size: 2rem;
+            font-size: 2.3rem;
         }
 
         .brand-title {
-            font-size: 2rem;
+            font-size: 2.25rem;
         }
 
         .brand-copy {
@@ -213,13 +213,13 @@ st.markdown(
 
         [data-testid="stVerticalBlockBorderWrapper"]
         [data-testid="stVerticalBlockBorderWrapper"] {
-            margin: 0 0.65rem 0.65rem !important;
-            border-radius: 14px !important;
+            margin: 0 0.7rem 0.7rem !important;
+            border-radius: 18px !important;
         }
 
         [data-testid="stVerticalBlockBorderWrapper"]
         [data-testid="stVerticalBlockBorderWrapper"] > div {
-            padding: 0.8rem !important;
+            padding: 1rem !important;
         }
     }
     </style>
@@ -317,7 +317,7 @@ Message: {message}
 """
 
             st.markdown("<div style='height:0.35rem'></div>", unsafe_allow_html=True)
-            left, center, right = st.columns([1.05, 1.7, 1.05])
+            left, center, right = st.columns([0.8, 2.2, 0.8])
             with center:
                 analyze_clicked = st.button(
                     "🔍 Analyze Message", use_container_width=True
@@ -454,7 +454,7 @@ def result_page():
             st.info(recommendation)
 
             st.divider()
-            left, center, right = st.columns([1.05, 1.7, 1.05])
+            left, center, right = st.columns([0.8, 2.2, 0.8])
             with center:
                 if st.button("🔍 Scan Another Message", use_container_width=True):
                     st.session_state.result = None
@@ -484,7 +484,7 @@ def error_page():
                 with st.expander("🔧 Technical Details"):
                     st.code(error_message)
 
-            left, center, right = st.columns([1.05, 1.7, 1.05])
+            left, center, right = st.columns([0.8, 2.2, 0.8])
             with center:
                 if st.button("🔄 Try Again", use_container_width=True):
                     st.session_state.error_message = None
