@@ -19,9 +19,10 @@ st.markdown(
         --page-yellow: #FFF8D8;
         --outer-card: #FFFBE9;
         --header-sage: #EEF2D6;
-        --panel-sage: #EEF3D7;
-        --input-sage: #E3ECC8;
-        --border-sage: #B8C89B;
+        --panel-sage: #DFE8C4;
+        --input-sage: #EEF3DC;
+        --button-sage: #C9DCA4;
+        --border-sage: #AFC18C;
         --forest: #2E5A24;
         --forest-dark: #24491D;
         --ink: #1F2B1D;
@@ -112,16 +113,21 @@ st.markdown(
 
     /* GREEN BOX AROUND MESSAGE TYPE + ANALYZE BUTTON */
     .st-key-input_panel {
-        margin: 0 2rem 2rem !important;
-        background: #D7E7B0 !important;
-        border: 2px solid #9FB977 !important;
+        width: calc(100% - 4rem) !important;
+        max-width: calc(100% - 4rem) !important;
+        margin: 0 auto 2rem auto !important;
+        box-sizing: border-box !important;
+        background: var(--panel-sage) !important;
+        border: 2px solid var(--border-sage) !important;
         border-radius: 24px !important;
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22) !important;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.28) !important;
         overflow: visible !important;
     }
 
     .st-key-input_panel > div {
-        padding: 2.4rem 2.6rem 2.5rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 2.5rem 2.6rem 2.6rem !important;
     }
 
     .stSelectbox label,
@@ -136,7 +142,7 @@ st.markdown(
     .stTextInput input,
     .stTextArea textarea {
         background: var(--input-sage) !important;
-        border: 1px solid #AFC08E !important;
+        border: 1px solid var(--border-sage) !important;
         border-radius: 9px !important;
         color: var(--ink) !important;
         box-shadow: none !important;
@@ -170,16 +176,16 @@ st.markdown(
 
     /* Analyze button: LIGHT GREEN, as requested */
     .st-key-analyze_button button {
-        background: #BFD891 !important;
-        border: 1.5px solid #91AD66 !important;
+        background: var(--button-sage) !important;
+        border: 1.5px solid var(--border-sage) !important;
         color: #20351B !important;
-        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.16) !important;
+        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.12) !important;
     }
 
     .st-key-analyze_button button:hover {
-        background: #B2CF7C !important;
+        background: #BDD493 !important;
         color: #172913 !important;
-        border-color: #7F9F55 !important;
+        border-color: #9EB67A !important;
     }
 
     .stButton > button {
@@ -190,10 +196,10 @@ st.markdown(
     }
 
     .st-key-analyze_button button {
-        background: #BFD891 !important;
-        border: 1.5px solid #91AD66 !important;
+        background: var(--button-sage) !important;
+        border: 1.5px solid var(--border-sage) !important;
         color: #20351B !important;
-        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.16) !important;
+        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.12) !important;
     }
 
     [data-testid="stAlert"] {
@@ -228,7 +234,9 @@ st.markdown(
         }
 
         .st-key-input_panel {
-            margin: 0 0.7rem 0.7rem !important;
+            width: calc(100% - 1.4rem) !important;
+            max-width: calc(100% - 1.4rem) !important;
+            margin: 0 auto 0.9rem auto !important;
             border-radius: 18px !important;
         }
 
