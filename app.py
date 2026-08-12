@@ -18,7 +18,7 @@ st.markdown(
         --page-yellow-soft: #FFFDD1;
         --outer-card: #FFFDD1;
         --section-fill: #E8F2C7;
-        --section-fill-2: #CEEDB6;
+        --section-fill-2: #E8F2C7;
         --input-fill: #E8F2C7;
         --panel-soft: #F3F8DF;
         --green-accent: #B3D9A5;
