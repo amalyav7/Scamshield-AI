@@ -9,6 +9,187 @@ st.set_page_config(
     layout="centered"
 )
 
+# -----------------------------
+# CUSTOM UI STYLES
+# -----------------------------
+st.markdown(
+    """
+    <style>
+    :root {
+        --baby-yellow: #FFF7C7;
+        --sage: #DDE8C5;
+        --sage-deep: #B8C99A;
+        --forest: #315B2A;
+        --forest-dark: #23451F;
+        --ink: #1F2F1E;
+        --soft-border: rgba(49, 91, 42, 0.18);
+    }
+
+    .stApp {
+        background: linear-gradient(180deg, #FFF9D8 0%, var(--baby-yellow) 100%);
+        color: var(--ink);
+    }
+
+    .block-container {
+        max-width: 860px;
+        padding-top: 1.25rem;
+        padding-bottom: 2.5rem;
+    }
+
+    h1, h2, h3, p, label, .stMarkdown {
+        color: var(--ink);
+    }
+
+    h1 {
+        font-size: clamp(2rem, 5vw, 3.25rem) !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.03em;
+        margin-bottom: 0.1rem !important;
+    }
+
+    h2, h3 {
+        font-weight: 700 !important;
+    }
+
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        border-radius: 24px !important;
+        border: 1px solid var(--soft-border) !important;
+        background: rgba(221, 232, 197, 0.82) !important;
+        box-shadow: 0 10px 28px rgba(49, 91, 42, 0.08);
+    }
+
+    div[data-baseweb="select"] > div,
+    .stTextInput input,
+    .stTextArea textarea {
+        background: rgba(255, 255, 255, 0.74) !important;
+        border: 1px solid rgba(49, 91, 42, 0.24) !important;
+        border-radius: 14px !important;
+        color: var(--ink) !important;
+        min-height: 48px;
+        box-shadow: none !important;
+    }
+
+    .stTextArea textarea {
+        min-height: 180px !important;
+    }
+
+    div[data-baseweb="select"] > div:focus-within,
+    .stTextInput input:focus,
+    .stTextArea textarea:focus {
+        border-color: var(--forest) !important;
+        box-shadow: 0 0 0 2px rgba(49, 91, 42, 0.10) !important;
+    }
+
+    .stButton > button {
+        width: 100%;
+        min-height: 50px;
+        border: none !important;
+        border-radius: 14px !important;
+        background: linear-gradient(180deg, var(--forest) 0%, var(--forest-dark) 100%) !important;
+        color: white !important;
+        font-weight: 700 !important;
+        font-size: 1rem !important;
+        box-shadow: 0 8px 18px rgba(35, 69, 31, 0.18);
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 22px rgba(35, 69, 31, 0.24);
+    }
+
+    hr {
+        border-color: rgba(49, 91, 42, 0.14) !important;
+    }
+
+    [data-testid="stAlert"] {
+        border-radius: 16px !important;
+    }
+
+    .scamshield-hero {
+        background: rgba(221, 232, 197, 0.88);
+        border: 1px solid var(--soft-border);
+        border-radius: 26px;
+        padding: 1.4rem 1.4rem 1.2rem;
+        text-align: center;
+        box-shadow: 0 12px 30px rgba(49, 91, 42, 0.09);
+        margin-bottom: 1rem;
+    }
+
+    .scamshield-hero .shield {
+        font-size: 2.1rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .scamshield-hero .title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 800;
+        color: var(--forest-dark);
+        line-height: 1.05;
+    }
+
+    .scamshield-hero .subtitle {
+        margin-top: 0.35rem;
+        font-size: clamp(1rem, 2.4vw, 1.2rem);
+        font-weight: 700;
+    }
+
+    .scamshield-hero .copy {
+        margin: 0.55rem auto 0;
+        max-width: 620px;
+        font-size: 0.96rem;
+        line-height: 1.55;
+    }
+
+    .section-card {
+        background: rgba(221, 232, 197, 0.86);
+        border: 1px solid var(--soft-border);
+        border-radius: 22px;
+        padding: 1rem 1rem 0.35rem;
+        margin: 0.75rem 0 1rem;
+        box-shadow: 0 10px 25px rgba(49, 91, 42, 0.07);
+    }
+
+    @media (max-width: 640px) {
+        .block-container {
+            padding-left: 0.8rem;
+            padding-right: 0.8rem;
+            padding-top: 0.75rem;
+        }
+
+        .scamshield-hero {
+            border-radius: 20px;
+            padding: 1.1rem 0.9rem;
+        }
+
+        .section-card {
+            border-radius: 18px;
+            padding: 0.8rem 0.75rem 0.25rem;
+        }
+
+        .stButton > button {
+            min-height: 52px;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+def page_hero(title="ScamShield", subtitle="AI Scam Message Detector", copy=""):
+    copy_html = f'<div class="copy">{copy}</div>' if copy else ""
+    st.markdown(
+        f"""
+        <div class="scamshield-hero">
+            <div class="shield">🛡️</div>
+            <div class="title">{title}</div>
+            <div class="subtitle">{subtitle}</div>
+            {copy_html}
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 # Connect to Ollama Cloud
 try:
     ollama_api_key = st.secrets["OLLAMA_API_KEY"]
@@ -38,50 +219,51 @@ if "error_message" not in st.session_state:
 
 # Page 1 - Scan page
 def scan_page():
-    st.title("🛡️ ScamShield")
-    st.subheader("AI Scam Message Detector")
-    st.write(
-        "Enter an email or text message below. "
-        "ScamShield will analyze it for possible scam warning signs."
+    page_hero(
+        copy=(
+            "Enter an email or text message below. "
+            "ScamShield will analyze it for possible scam warning signs."
+        )
     )
-    st.divider()
 
     # Ask for message type
-    message_type = st.selectbox(
-        "Message Type",
-        [
-            "Select Message Type",
-            "Email",
-            "Text Message"
-        ]
-    )
+    with st.container(border=True):
+        message_type = st.selectbox(
+            "Message Type",
+            [
+                "Select Message Type",
+                "Email",
+                "Text Message"
+            ]
+        )
 
     message_to_analyze = ""
 
     # Email inputs
     if message_type == "Email":
-        sender = st.text_input(
-            "From Email Address",
-            placeholder="example@email.com"
-        )
+        with st.container(border=True):
+            sender = st.text_input(
+                "From Email Address",
+                placeholder="example@email.com"
+            )
 
-        subject = st.text_input(
-            "Subject",
-            placeholder="Enter email subject"
-        )
+            subject = st.text_input(
+                "Subject",
+                placeholder="Enter email subject"
+            )
 
-        body = st.text_area(
-            "Email Body",
-            placeholder="Paste the email here...",
-            height=200
-        )
+            body = st.text_area(
+                "Email Body",
+                placeholder="Paste the email here...",
+                height=200
+            )
 
-        attachment = st.selectbox(
-            "Does the email have an attachment?",
-            ["No", "Yes"]
-        )
+            attachment = st.selectbox(
+                "Does the email have an attachment?",
+                ["No", "Yes"]
+            )
 
-        message_to_analyze = f"""
+            message_to_analyze = f"""
 Message Type: Email
 Sender: {sender}
 Subject: {subject}
@@ -91,18 +273,19 @@ Attachment: {attachment}
 
     # Text message inputs
     elif message_type == "Text Message":
-        phone_number = st.text_input(
-            "Phone Number",
-            placeholder="555-123-4567"
-        )
+        with st.container(border=True):
+            phone_number = st.text_input(
+                "Phone Number",
+                placeholder="555-123-4567"
+            )
 
-        message = st.text_area(
-            "Text Message",
-            placeholder="Paste the text message here...",
-            height=200
-        )
+            message = st.text_area(
+                "Text Message",
+                placeholder="Paste the text message here...",
+                height=200
+            )
 
-        message_to_analyze = f"""
+            message_to_analyze = f"""
 Message Type: Text Message
 Phone Number: {phone_number}
 Message: {message}
@@ -212,7 +395,7 @@ Message to analyze:
 
 # Page 2 - Result page
 def result_page():
-    st.title("🛡️ ScamShield")
+    page_hero(subtitle="AI Scam Message Detector")
     st.success("✅ Analysis Complete")
     st.header("Scan Result")
     st.divider()
@@ -297,7 +480,7 @@ def result_page():
 
 # Page 3 - Error page
 def error_page():
-    st.title("🛡️ ScamShield")
+    page_hero(subtitle="AI Scam Message Detector")
     st.error("⚠️ Something Went Wrong")
     st.header("We couldn't analyze your message.")
 
