@@ -2,7 +2,7 @@ import streamlit as st
 import json
 from ollama import Client
 
-# Page settings
+# Page setting
 st.set_page_config(
     page_title="ScamShield",
     page_icon="🛡️",
