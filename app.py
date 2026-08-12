@@ -17,7 +17,7 @@ st.markdown(
         --page-yellow: #FDFAE8;
         --page-yellow-soft: #FDFAE8;
         --outer-card: #FFF8AD;
-        --section-fill: #E6E9CC;
+        --section-fill: #D1F59F;
         --section-fill-2: #E9ECD3;
         --input-fill: #E7EBCF;
         --olive: #566B30;
