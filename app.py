@@ -32,8 +32,10 @@ st.markdown(
 
     .block-container {
         max-width: 860px;
-        padding-top: 1.25rem;
-        padding-bottom: 2.5rem;
+        padding-top: 2.25rem;
+        padding-bottom: 2.75rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 
     h1, h2, h3, p, label, .stMarkdown {
@@ -110,10 +112,11 @@ st.markdown(
         background: rgba(221, 232, 197, 0.88);
         border: 1px solid var(--soft-border);
         border-radius: 26px;
-        padding: 1.4rem 1.4rem 1.2rem;
+        padding: 1.45rem 1.4rem 1.2rem;
         text-align: center;
         box-shadow: 0 12px 30px rgba(49, 91, 42, 0.09);
-        margin-bottom: 1rem;
+        max-width: 760px;
+        margin: 0.7rem auto 1.15rem;
     }
 
     .scamshield-hero .shield {
@@ -152,9 +155,9 @@ st.markdown(
 
     @media (max-width: 640px) {
         .block-container {
-            padding-left: 0.8rem;
-            padding-right: 0.8rem;
-            padding-top: 0.75rem;
+            padding-left: 0.85rem;
+            padding-right: 0.85rem;
+            padding-top: 1.35rem;
         }
 
         .scamshield-hero {
