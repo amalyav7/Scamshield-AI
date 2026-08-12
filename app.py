@@ -2,20 +2,20 @@ import streamlit as st
 import json
 from ollama import Client
 
-# Page setting
+# Page settings
 st.set_page_config(
     page_title="ScamShield",
     page_icon="🛡️",
     layout="centered"
 )
 
-# Connect to Ollama
+# Connect to Ollama Cloud
 try:
     ollama_api_key = st.secrets["OLLAMA_API_KEY"]
 except Exception:
     st.error(
         "OLLAMA_API_KEY was not found. "
-        "Add it to .streamlit/secrets.toml."
+        "Add it to your Streamlit secrets."
     )
     st.stop()
 
@@ -36,7 +36,6 @@ if "result" not in st.session_state:
 if "error_message" not in st.session_state:
     st.session_state.error_message = None
 
-
 # Page 1 - Scan page
 def scan_page():
     st.title("🛡️ ScamShield")
@@ -45,7 +44,6 @@ def scan_page():
         "Enter an email or text message below. "
         "ScamShield will analyze it for possible scam warning signs."
     )
-
     st.divider()
 
     # Ask for message type
@@ -121,12 +119,11 @@ Message: {message}
             st.warning("Please select Email or Text Message.")
             return
 
-        # Check that a message was entered
         if message_to_analyze.strip() == "":
             st.warning("Please enter a message.")
             return
 
-        # Create the AI prompt
+        # Create AI prompt
         prompt = f"""
 You are ScamShield, an AI scam message detector.
 
@@ -180,10 +177,10 @@ Message to analyze:
 {message_to_analyze}
 """
 
-        # Call the AI
+        # Call Ollama AI
         try:
             with st.spinner("ScamShield is analyzing the message..."):
-                response = client.chat.completions.create(
+                response = client.chat(
                     model="gemma3:1b",
                     messages=[
                         {
@@ -191,73 +188,38 @@ Message to analyze:
                             "content": prompt
                         }
                     ],
-                    response_format={
-                        "type": "json_schema",
-                        "json_schema": {
-                            "name": "scam_analysis",
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "risk_level": {
-                                        "type": "string",
-                                        "enum": ["LOW", "MEDIUM", "HIGH"]
-                                    },
-                                    "warning_signs": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "recommendation": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "risk_level",
-                                    "warning_signs",
-                                    "recommendation"
-                                ],
-                                "additionalProperties": False
-                            }
-                        }
-                    },
-                    temperature=0
+                    format="json",
+                    options={
+                        "temperature": 0
+                    }
                 )
 
-            # Get the AI response
-            ai_response = response.choices[0].message.content
+            # Get AI response
+            ai_response = response["message"]["content"]
 
-            # Convert the JSON response into a dictionary
+            # Convert JSON response into a dictionary
             result = json.loads(ai_response)
 
-            # Save the result
+            # Save result and go to result page
             st.session_state.result = result
-
-            # Go to result page
             st.session_state.page = "result"
             st.rerun()
 
         except Exception as e:
-            # Save the error
             st.session_state.error_message = str(e)
-
-            # Go to error page
             st.session_state.page = "error"
             st.rerun()
-
 
 # Page 2 - Result page
 def result_page():
     st.title("🛡️ ScamShield")
     st.success("✅ Analysis Complete")
     st.header("Scan Result")
-
     st.divider()
 
-    # Get the saved result
+    # Get saved result
     result = st.session_state.get("result")
 
-    # Make sure a result exists
     if result is None:
         st.error("No analysis result was found.")
 
@@ -267,7 +229,7 @@ def result_page():
 
         return
 
-    # Make sure the result is a dictionary
+    # Make sure result is a dictionary
     if isinstance(result, str):
         try:
             result = json.loads(result)
@@ -275,7 +237,7 @@ def result_page():
             st.error("The AI returned an invalid result.")
             return
 
-    # Get the three result values
+    # Get result values
     risk_level = result.get(
         "risk_level",
         "UNKNOWN"
@@ -298,13 +260,10 @@ def result_page():
 
     if risk_level == "LOW":
         st.success("🟢 LOW RISK")
-
     elif risk_level == "MEDIUM":
         st.warning("🟡 MEDIUM RISK")
-
     elif risk_level == "HIGH":
         st.error("🔴 HIGH RISK")
-
     else:
         st.info(risk_level)
 
@@ -324,18 +283,17 @@ def result_page():
     # Display recommendation
     st.subheader("🛡️ Recommendation")
     st.info(recommendation)
-
     st.divider()
 
-    # Return to the scan page
+    # Scan another message
     if st.button(
         "🔍 Scan Another Message",
         use_container_width=True
     ):
         st.session_state.result = None
+        st.session_state.error_message = None
         st.session_state.page = "scan"
         st.rerun()
-
 
 # Page 3 - Error page
 def error_page():
@@ -344,28 +302,29 @@ def error_page():
     st.header("We couldn't analyze your message.")
 
     st.write(
-        "ScamShield had a problem communicating with the AI."
+        "ScamShield had a problem communicating "
+        "with the Ollama AI service."
     )
 
     st.divider()
 
-    # Show possible reasons
+    # Possible reasons
     st.subheader("Possible Reasons")
-    st.write("• Ollama may not be running.")
-    st.write("• The Gemma model may not be installed.")
-    st.write("• There may be a connection problem.")
-    st.write("• The AI may not have returned valid JSON.")
+    st.write("• The Ollama API key may be missing or incorrect.")
+    st.write("• The selected model may not be available.")
+    st.write("• There may be an internet or API connection problem.")
+    st.write("• Ollama may have returned an invalid response.")
+    st.write("• The AI response may not contain valid JSON.")
 
     st.divider()
 
     st.info(
-        "Check that Ollama is running and try again."
+        "Check your Ollama API key and model settings, "
+        "then try again."
     )
 
-    # Show technical error details
-    error_message = st.session_state.get(
-        "error_message"
-    )
+    # Show technical error
+    error_message = st.session_state.get("error_message")
 
     if error_message:
         with st.expander("🔧 Technical Details"):
@@ -373,7 +332,7 @@ def error_page():
 
     st.divider()
 
-    # Return to scan page
+    # Try again
     if st.button(
         "🔄 Try Again",
         use_container_width=True
@@ -383,17 +342,13 @@ def error_page():
         st.session_state.page = "scan"
         st.rerun()
 
-
-# Show the correct page
+# Show correct page
 if st.session_state.page == "scan":
     scan_page()
-
 elif st.session_state.page == "result":
     result_page()
-
 elif st.session_state.page == "error":
     error_page()
-
 else:
     st.session_state.page = "scan"
     st.rerun()
