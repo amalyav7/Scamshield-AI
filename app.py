@@ -15,6 +15,8 @@ st.set_page_config(
 st.markdown(
     """
     <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,400;0,500;0,600;0,700&display=swap');
+
     :root {
         /* Base colors from your reference images */
         --butter-yellow: #FDEC80;
@@ -38,7 +40,7 @@ st.markdown(
     .stApp button, .stApp input, .stApp textarea,
     .stApp [data-baseweb="select"], .stApp label,
     .stApp p, .stApp span, .stApp div {
-        font-family: "Aptos", "Inter", "Segoe UI", Arial, sans-serif !important;
+        font-family: "Cormorant Infant", Georgia, serif !important;
     }
 
     .stApp {
@@ -181,21 +183,21 @@ st.markdown(
     }
 
     .stButton > button {
-        min-height: 68px;
+        min-height: 56px;
         border-radius: 12px !important;
         font-weight: 800 !important;
-        font-size: 1.25rem !important;
+        font-size: 1.2rem !important;
         letter-spacing: 0.01em !important;
     }
 
     /* Analyze button: LIGHT GREEN, as requested */
     .st-key-analyze_button button {
-        min-height: 72px !important;
+        min-height: 54px !important;
         background: var(--button-sage) !important;
         border: 2px solid var(--border-sage) !important;
         color: var(--forest-dark) !important;
-        font-size: 1.35rem !important;
-        font-weight: 850 !important;
+        font-size: 1.7rem !important;
+        font-weight: 700 !important;
         box-shadow: 0 6px 14px rgba(86, 107, 48, 0.14) !important;
     }
 
@@ -213,12 +215,12 @@ st.markdown(
     }
 
     .st-key-analyze_button button {
-        min-height: 72px !important;
+        min-height: 54px !important;
         background: var(--button-sage) !important;
         border: 2px solid var(--border-sage) !important;
         color: var(--forest-dark) !important;
-        font-size: 1.35rem !important;
-        font-weight: 850 !important;
+        font-size: 1.7rem !important;
+        font-weight: 700 !important;
         box-shadow: 0 6px 14px rgba(86, 107, 48, 0.14) !important;
     }
 
@@ -359,7 +361,7 @@ Message: {message}
 """
 
             st.markdown("<div style='height:0.35rem'></div>", unsafe_allow_html=True)
-            left, center, right = st.columns([0.8, 2.2, 0.8])
+            left, center, right = st.columns([1.15, 1.5, 1.15])
             with center:
                 analyze_clicked = st.button(
                     "Analyze Message", use_container_width=True, key="analyze_button"
