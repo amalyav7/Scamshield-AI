@@ -16,8 +16,8 @@ st.markdown(
     """
     <style>
     :root {
-        --page-yellow: #FFF8D6;
-        --card-yellow: #FFFBEA;
+        --page-yellow: #FFF8D8;
+        --outer-card: #FFFBE9;
         --header-sage: #EEF2D6;
         --panel-sage: #EEF3D7;
         --input-sage: #E3ECC8;
@@ -28,13 +28,14 @@ st.markdown(
     }
 
     .stApp {
-        background: linear-gradient(180deg, #FFF9DD 0%, var(--page-yellow) 100%);
+        background: linear-gradient(180deg, #FFF9DF 0%, var(--page-yellow) 100%);
         color: var(--ink);
     }
 
+    /* Space above the whole design so it does NOT touch the top */
     .block-container {
-        max-width: 880px;
-        padding-top: 4.2rem;
+        max-width: 900px;
+        padding-top: 5rem;
         padding-bottom: 3rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -44,76 +45,92 @@ st.markdown(
         color: var(--ink);
     }
 
-    /* ONE OUTER CARD - matches reference image */
-    .app-card {
-        max-width: 820px;
-        margin: 0 auto;
-        background: rgba(255, 251, 234, 0.96);
-        border: 1.5px solid var(--border-sage);
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: 0 8px 22px rgba(55, 77, 42, 0.06);
+    /* OUTER CARD */
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        background: var(--outer-card) !important;
+        border: 1.5px solid var(--border-sage) !important;
+        border-radius: 24px !important;
+        box-shadow: 0 8px 22px rgba(55, 77, 42, 0.06) !important;
+        overflow: hidden !important;
     }
 
-    .app-card-header {
-        background: linear-gradient(180deg, #F0F3D9 0%, #F4F5DE 100%);
+    /* Remove excessive Streamlit padding from the outer card */
+    [data-testid="stVerticalBlockBorderWrapper"] > div {
+        padding: 0 !important;
+    }
+
+    /* HEADER AREA INSIDE OUTER CARD */
+    .scam-header {
+        background: linear-gradient(180deg, #EEF2D6 0%, #F3F5DE 100%);
         text-align: center;
-        padding: 1.5rem 1.25rem 1.35rem;
-        border-bottom: 1px solid rgba(184, 200, 155, 0.55);
+        padding: 1.45rem 1.3rem 1.25rem;
+        margin: 0;
     }
 
     .brand-row {
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 0.55rem;
-        line-height: 1;
+        gap: 0.6rem;
     }
 
     .brand-icon {
-        font-size: 2.45rem;
+        font-size: 2.35rem;
         line-height: 1;
     }
 
     .brand-title {
-        font-size: clamp(2rem, 4.6vw, 3rem);
-        line-height: 1;
+        font-size: clamp(2rem, 4.5vw, 2.8rem);
         font-weight: 800;
-        letter-spacing: -0.03em;
+        line-height: 1;
+        letter-spacing: -0.025em;
         color: var(--forest-dark);
     }
 
     .brand-subtitle {
         margin-top: 0.55rem;
-        font-size: clamp(1.05rem, 2vw, 1.45rem);
+        font-size: clamp(1.05rem, 2.1vw, 1.4rem);
         font-weight: 700;
-        color: var(--ink);
     }
 
     .brand-copy {
-        max-width: 610px;
         margin: 0.7rem auto 0;
-        font-size: 0.98rem;
+        max-width: 600px;
+        font-size: 0.96rem;
         line-height: 1.5;
     }
 
-    .app-card-body {
-        padding: 1rem 0.95rem 1.05rem;
-        background: rgba(255, 251, 234, 0.98);
+    .header-divider {
+        height: 1px;
+        background: rgba(184, 200, 155, 0.58);
+        margin: 0;
     }
 
-    .form-panel {
-        background: linear-gradient(180deg, #EFF3DA 0%, #EDF2D5 100%);
-        border: 1.3px solid #D7E0BE;
-        border-radius: 16px;
-        padding: 0.95rem 1rem 1rem;
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    /* Body space under header */
+    .form-spacer {
+        height: 0.9rem;
+    }
+
+    /* NESTED GREEN INPUT PANEL */
+    [data-testid="stVerticalBlockBorderWrapper"]
+    [data-testid="stVerticalBlockBorderWrapper"] {
+        margin: 0 0.85rem 0.85rem !important;
+        background: linear-gradient(180deg, #EFF3DA 0%, #EDF2D5 100%) !important;
+        border: 1.3px solid #D7E0BE !important;
+        border-radius: 16px !important;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18) !important;
+        overflow: visible !important;
+    }
+
+    [data-testid="stVerticalBlockBorderWrapper"]
+    [data-testid="stVerticalBlockBorderWrapper"] > div {
+        padding: 1rem 1.1rem 1.05rem !important;
     }
 
     .stSelectbox label,
     .stTextInput label,
     .stTextArea label {
-        font-weight: 700 !important;
+        font-weight: 650 !important;
         color: var(--ink) !important;
         font-size: 0.98rem !important;
     }
@@ -156,34 +173,29 @@ st.markdown(
         font-weight: 700 !important;
         font-size: 1rem !important;
         box-shadow: 0 5px 12px rgba(36, 73, 29, 0.16);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
 
     .stButton > button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 7px 15px rgba(36, 73, 29, 0.2);
+        background: var(--forest-dark) !important;
+        color: white !important;
     }
 
     [data-testid="stAlert"] {
         border-radius: 12px !important;
     }
 
-    hr {
-        border-color: rgba(184, 200, 155, 0.45) !important;
-    }
-
     @media (max-width: 640px) {
         .block-container {
-            padding-top: 2.2rem;
+            padding-top: 2.75rem;
             padding-left: 0.65rem;
             padding-right: 0.65rem;
         }
 
-        .app-card {
-            border-radius: 18px;
+        [data-testid="stVerticalBlockBorderWrapper"] {
+            border-radius: 18px !important;
         }
 
-        .app-card-header {
+        .scam-header {
             padding: 1.15rem 0.85rem 1rem;
         }
 
@@ -195,26 +207,19 @@ st.markdown(
             font-size: 2rem;
         }
 
-        .brand-subtitle {
-            font-size: 1.05rem;
-        }
-
         .brand-copy {
             font-size: 0.9rem;
-            line-height: 1.45;
         }
 
-        .app-card-body {
-            padding: 0.75rem;
+        [data-testid="stVerticalBlockBorderWrapper"]
+        [data-testid="stVerticalBlockBorderWrapper"] {
+            margin: 0 0.65rem 0.65rem !important;
+            border-radius: 14px !important;
         }
 
-        .form-panel {
-            border-radius: 14px;
-            padding: 0.8rem;
-        }
-
-        .stButton > button {
-            min-height: 50px;
+        [data-testid="stVerticalBlockBorderWrapper"]
+        [data-testid="stVerticalBlockBorderWrapper"] > div {
+            padding: 0.8rem !important;
         }
     }
     </style>
@@ -234,7 +239,6 @@ client = Client(
     headers={"Authorization": f"Bearer {ollama_api_key}"},
 )
 
-# Create session state
 if "page" not in st.session_state:
     st.session_state.page = "scan"
 if "result" not in st.session_state:
@@ -243,49 +247,54 @@ if "error_message" not in st.session_state:
     st.session_state.error_message = None
 
 
-def open_app_card(copy_text):
+def render_header(copy_text):
     st.markdown(
         f"""
-        <div class="app-card">
-            <div class="app-card-header">
-                <div class="brand-row">
-                    <div class="brand-icon">🛡️</div>
-                    <div class="brand-title">ScamShield</div>
-                </div>
-                <div class="brand-subtitle">AI Scam Message Detector</div>
-                <div class="brand-copy">{copy_text}</div>
+        <div class="scam-header">
+            <div class="brand-row">
+                <div class="brand-icon">🛡️</div>
+                <div class="brand-title">ScamShield</div>
             </div>
-            <div class="app-card-body">
-                <div class="form-panel">
+            <div class="brand-subtitle">AI Scam Message Detector</div>
+            <div class="brand-copy">{copy_text}</div>
+        </div>
+        <div class="header-divider"></div>
+        <div class="form-spacer"></div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def close_form_panel():
-    st.markdown("</div></div></div>", unsafe_allow_html=True)
-
-
 # Page 1 - Scan page
 def scan_page():
-    open_app_card(
-        "Enter an email or text message below. ScamShield will analyze it for possible scam warning signs."
-    )
-
-    message_type = st.selectbox(
-        "Message Type",
-        ["Select Message Type", "Email", "Text Message"],
-    )
-
     message_to_analyze = ""
 
-    if message_type == "Email":
-        sender = st.text_input("From Email Address", placeholder="example@email.com")
-        subject = st.text_input("Subject", placeholder="Enter email subject")
-        body = st.text_area("Email Body", placeholder="Paste the email here...", height=200)
-        attachment = st.selectbox("Does the email have an attachment?", ["No", "Yes"])
+    # REAL Streamlit outer container
+    with st.container(border=True):
+        render_header(
+            "Enter an email or text message below. ScamShield will analyze it for possible scam warning signs."
+        )
 
-        message_to_analyze = f"""
+        # REAL nested Streamlit container: this is the green box around ALL inputs
+        with st.container(border=True):
+            message_type = st.selectbox(
+                "Message Type",
+                ["Select Message Type", "Email", "Text Message"],
+            )
+
+            if message_type == "Email":
+                sender = st.text_input(
+                    "From Email Address", placeholder="example@email.com"
+                )
+                subject = st.text_input("Subject", placeholder="Enter email subject")
+                body = st.text_area(
+                    "Email Body", placeholder="Paste the email here...", height=200
+                )
+                attachment = st.selectbox(
+                    "Does the email have an attachment?", ["No", "Yes"]
+                )
+
+                message_to_analyze = f"""
 Message Type: Email
 Sender: {sender}
 Subject: {subject}
@@ -293,22 +302,26 @@ Body: {body}
 Attachment: {attachment}
 """
 
-    elif message_type == "Text Message":
-        phone_number = st.text_input("Phone Number", placeholder="555-123-4567")
-        message = st.text_area("Text Message", placeholder="Paste the text message here...", height=200)
+            elif message_type == "Text Message":
+                phone_number = st.text_input(
+                    "Phone Number", placeholder="555-123-4567"
+                )
+                message = st.text_area(
+                    "Text Message", placeholder="Paste the text message here...", height=200
+                )
 
-        message_to_analyze = f"""
+                message_to_analyze = f"""
 Message Type: Text Message
 Phone Number: {phone_number}
 Message: {message}
 """
 
-    st.markdown("<div style='height:0.35rem'></div>", unsafe_allow_html=True)
-    left, center, right = st.columns([1.15, 1.65, 1.15])
-    with center:
-        analyze_clicked = st.button("🔍 Analyze Message", use_container_width=True)
-
-    close_form_panel()
+            st.markdown("<div style='height:0.35rem'></div>", unsafe_allow_html=True)
+            left, center, right = st.columns([1.05, 1.7, 1.05])
+            with center:
+                analyze_clicked = st.button(
+                    "🔍 Analyze Message", use_container_width=True
+                )
 
     if analyze_clicked:
         if message_type == "Select Message Type":
@@ -392,92 +405,94 @@ Message to analyze:
 
 # Page 2 - Result page
 def result_page():
-    open_app_card("Your scan is complete. Review the results below.")
+    with st.container(border=True):
+        render_header("Your scan is complete. Review the results below.")
 
-    result = st.session_state.get("result")
-    if result is None:
-        st.error("No analysis result was found.")
-        if st.button("🔄 Back to Scanner", use_container_width=True):
-            st.session_state.page = "scan"
-            st.rerun()
-        close_form_panel()
-        return
+        with st.container(border=True):
+            result = st.session_state.get("result")
 
-    if isinstance(result, str):
-        try:
-            result = json.loads(result)
-        except json.JSONDecodeError:
-            st.error("The AI returned an invalid result.")
-            close_form_panel()
-            return
+            if result is None:
+                st.error("No analysis result was found.")
+                if st.button("🔄 Back to Scanner", use_container_width=True):
+                    st.session_state.page = "scan"
+                    st.rerun()
+                return
 
-    risk_level = str(result.get("risk_level", "UNKNOWN")).upper()
-    warning_signs = result.get("warning_signs", [])
-    recommendation = result.get("recommendation", "No recommendation available.")
+            if isinstance(result, str):
+                try:
+                    result = json.loads(result)
+                except json.JSONDecodeError:
+                    st.error("The AI returned an invalid result.")
+                    return
 
-    st.subheader("🚦 Risk Level")
-    if risk_level == "LOW":
-        st.success("🟢 LOW RISK")
-    elif risk_level == "MEDIUM":
-        st.warning("🟡 MEDIUM RISK")
-    elif risk_level == "HIGH":
-        st.error("🔴 HIGH RISK")
-    else:
-        st.info(risk_level)
+            risk_level = str(result.get("risk_level", "UNKNOWN")).upper()
+            warning_signs = result.get("warning_signs", [])
+            recommendation = result.get(
+                "recommendation", "No recommendation available."
+            )
 
-    st.divider()
-    st.subheader("⚠️ Warning Signs")
-    if isinstance(warning_signs, list):
-        for sign in warning_signs:
-            st.write(f"• {sign}")
-    else:
-        st.write(f"• {warning_signs}")
+            st.subheader("🚦 Risk Level")
+            if risk_level == "LOW":
+                st.success("🟢 LOW RISK")
+            elif risk_level == "MEDIUM":
+                st.warning("🟡 MEDIUM RISK")
+            elif risk_level == "HIGH":
+                st.error("🔴 HIGH RISK")
+            else:
+                st.info(risk_level)
 
-    st.divider()
-    st.subheader("🛡️ Recommendation")
-    st.info(recommendation)
+            st.divider()
+            st.subheader("⚠️ Warning Signs")
+            if isinstance(warning_signs, list):
+                for sign in warning_signs:
+                    st.write(f"• {sign}")
+            else:
+                st.write(f"• {warning_signs}")
 
-    st.divider()
-    left, center, right = st.columns([1.1, 1.7, 1.1])
-    with center:
-        if st.button("🔍 Scan Another Message", use_container_width=True):
-            st.session_state.result = None
-            st.session_state.error_message = None
-            st.session_state.page = "scan"
-            st.rerun()
+            st.divider()
+            st.subheader("🛡️ Recommendation")
+            st.info(recommendation)
 
-    close_form_panel()
+            st.divider()
+            left, center, right = st.columns([1.05, 1.7, 1.05])
+            with center:
+                if st.button("🔍 Scan Another Message", use_container_width=True):
+                    st.session_state.result = None
+                    st.session_state.error_message = None
+                    st.session_state.page = "scan"
+                    st.rerun()
 
 
 # Page 3 - Error page
 def error_page():
-    open_app_card("ScamShield had a problem communicating with the Ollama AI service.")
+    with st.container(border=True):
+        render_header(
+            "ScamShield had a problem communicating with the Ollama AI service."
+        )
 
-    st.error("⚠️ Something Went Wrong")
-    st.write("Possible reasons:")
-    st.write("• The Ollama API key may be missing or incorrect.")
-    st.write("• The selected model may not be available.")
-    st.write("• There may be an internet or API connection problem.")
-    st.write("• Ollama may have returned an invalid response.")
-    st.write("• The AI response may not contain valid JSON.")
+        with st.container(border=True):
+            st.error("⚠️ Something Went Wrong")
+            st.write("Possible reasons:")
+            st.write("• The Ollama API key may be missing or incorrect.")
+            st.write("• The selected model may not be available.")
+            st.write("• There may be an internet or API connection problem.")
+            st.write("• Ollama may have returned an invalid response.")
+            st.write("• The AI response may not contain valid JSON.")
 
-    error_message = st.session_state.get("error_message")
-    if error_message:
-        with st.expander("🔧 Technical Details"):
-            st.code(error_message)
+            error_message = st.session_state.get("error_message")
+            if error_message:
+                with st.expander("🔧 Technical Details"):
+                    st.code(error_message)
 
-    left, center, right = st.columns([1.1, 1.7, 1.1])
-    with center:
-        if st.button("🔄 Try Again", use_container_width=True):
-            st.session_state.error_message = None
-            st.session_state.result = None
-            st.session_state.page = "scan"
-            st.rerun()
-
-    close_form_panel()
+            left, center, right = st.columns([1.05, 1.7, 1.05])
+            with center:
+                if st.button("🔄 Try Again", use_container_width=True):
+                    st.session_state.error_message = None
+                    st.session_state.result = None
+                    st.session_state.page = "scan"
+                    st.rerun()
 
 
-# Show correct page
 if st.session_state.page == "scan":
     scan_page()
 elif st.session_state.page == "result":
