@@ -14,9 +14,9 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600;700&display=swap');
 
     :root {
-        --page-yellow: #F4E994;
+        --page-yellow: #F0E16A;
         --page-yellow-soft: #F7EFAF;
-        --outer-card: #F0E16A;
+        --outer-card: #F4E994;
         --section-fill: #E6E9CC;
         --section-fill-2: #E9ECD3;
         --input-fill: #E7EBCF;
