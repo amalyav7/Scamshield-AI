@@ -36,7 +36,7 @@ st.markdown(
     }
 
     .stApp {
-        background: linear-gradient(180deg, var(--page-yellow-soft) 0%, var(--page-yellow) 100%);
+        background: var(--page-yellow);
         color: var(--text);
     }
 
@@ -61,7 +61,7 @@ st.markdown(
     }
 
     .header-section {
-        background: linear-gradient(180deg, var(--section-fill) 0%, var(--section-fill-2) 100%);
+        background: var(--section-fill);
         text-align: center;
         padding: 1.55rem 1rem 1.3rem;
         margin: 0;
@@ -118,7 +118,7 @@ st.markdown(
         width: calc(100% - 1.6rem) !important;
         max-width: calc(100% - 1.6rem) !important;
         margin: 0 auto 0.9rem auto !important;
-        background: linear-gradient(180deg, var(--section-fill-2) 0%, #E5E8CB 100%) !important;
+        background: var(--section-fill-2) !important;
         border: 1.5px solid rgba(170,182,137,0.95) !important;
         border-radius: 18px !important;
         box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18) !important;
@@ -140,7 +140,7 @@ st.markdown(
     div[data-baseweb="select"] > div,
     .stTextInput input,
     .stTextArea textarea {
-        background: linear-gradient(180deg, var(--input-fill) 0%, #E2E7C5 100%) !important;
+        background: var(--input-fill) !important;
         border: 1.4px solid var(--border) !important;
         border-radius: 8px !important;
         color: var(--text) !important;
@@ -178,21 +178,21 @@ st.markdown(
         min-height: 42px !important;
         width: 290px !important;
         max-width: 100% !important;
-        background: linear-gradient(90deg, #43601F 0%, #2B5317 100%) !important;
-        color: #F2F1E8 !important;
-        border: 1px solid rgba(63,81,35,0.50) !important;
+        background: var(--green-accent) !important;
+        color: var(--olive-dark) !important;
+        border: 1px solid rgba(86,107,48,0.35) !important;
         box-shadow: 0 5px 12px rgba(58,79,31,0.16) !important;
         font-size: 1.36rem !important;
         font-weight: 700 !important;
     }
 
     .st-key-analyze_button button:hover {
-        background: linear-gradient(90deg, #4C6925 0%, #315C1A 100%) !important;
-        color: #FAFAF3 !important;
+        background: #C6E5B2 !important;
+        color: var(--olive-dark) !important;
     }
 
     .st-key-main_card .stButton:not(.st-key-analyze_button) > button {
-        background: linear-gradient(90deg, var(--olive) 0%, var(--olive-dark) 100%) !important;
+        background: var(--olive) !important;
         color: white !important;
         border: none !important;
     }
