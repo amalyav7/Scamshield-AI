@@ -14,15 +14,17 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600;700&display=swap');
 
     :root {
-        --page-yellow: #FDFAE8;
-        --page-yellow-soft: #FDFAE8;
-        --outer-card: #FFF8AD;
-        --section-fill: #CAD487;
-        --section-fill-2: #E9ECD3;
-        --input-fill: #E7EBCF;
+        --page-yellow: #FFEAB0;
+        --page-yellow-soft: #FFFDD1;
+        --outer-card: #FFFDD1;
+        --section-fill: #E8F2C7;
+        --section-fill-2: #CEEDB6;
+        --input-fill: #E8F2C7;
+        --panel-soft: #F3F8DF;
+        --green-accent: #B3D9A5;
         --olive: #566B30;
         --olive-dark: #405123;
-        --border: #AAB689;
+        --border: #B3D9A5;
         --text: #223015;
     }
 
