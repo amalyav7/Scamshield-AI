@@ -34,7 +34,7 @@ st.markdown(
 
     .block-container {
         max-width: 920px;
-        padding-top: 2rem;
+        padding-top: 3.8rem;
         padding-bottom: 3rem;
         padding-left: 1rem;
         padding-right: 1rem;
@@ -45,8 +45,8 @@ st.markdown(
     }
 
     .scamshield-hero {
-        max-width: 820px;
-        margin: 0 auto 1.2rem;
+        max-width: 780px;
+        margin: 1rem auto 1.55rem;
         border-radius: 30px;
         border: 1px solid var(--border);
         background: linear-gradient(180deg, rgba(228, 235, 207, 0.95) 0%, rgba(240, 244, 222, 0.93) 100%);
@@ -92,24 +92,26 @@ st.markdown(
     }
 
     [data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(231, 236, 207, 0.76) !important;
-        border: 1px solid var(--border) !important;
+        background: rgba(228, 235, 207, 0.82) !important;
+        border: 1px solid rgba(117, 143, 92, 0.44) !important;
         border-radius: 28px !important;
         box-shadow: 0 10px 24px rgba(56, 83, 45, 0.06);
     }
 
     [data-testid="stVerticalBlockBorderWrapper"] > div {
-        padding: 0.45rem 0.55rem 0.7rem;
+        padding: 0.8rem 0.85rem 0.95rem;
     }
 
     [data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlockBorderWrapper"] {
-        background: rgba(243, 246, 230, 0.94) !important;
+        background: rgba(226, 235, 195, 0.98) !important;
+        border: 1.5px solid rgba(117, 143, 92, 0.55) !important;
         border-radius: 24px !important;
-        box-shadow: none !important;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18) !important;
+        margin-top: 0.35rem;
     }
 
     [data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlockBorderWrapper"] > div {
-        padding: 0.7rem 0.75rem 0.85rem;
+        padding: 0.95rem 1rem 1rem;
     }
 
     .panel-copy {
@@ -136,7 +138,7 @@ st.markdown(
     div[data-baseweb="select"] > div,
     .stTextInput input,
     .stTextArea textarea {
-        background: var(--sage-input) !important;
+        background: #EDF2D9 !important;
         border: 1px solid rgba(115, 142, 90, 0.45) !important;
         border-radius: 12px !important;
         color: var(--ink) !important;
@@ -197,7 +199,7 @@ st.markdown(
 
     @media (max-width: 640px) {
         .block-container {
-            padding-top: 1.2rem;
+            padding-top: 2rem;
             padding-left: 0.85rem;
             padding-right: 0.85rem;
         }
@@ -278,13 +280,14 @@ if "error_message" not in st.session_state:
 
 # Page 1 - Scan page
 def scan_page():
+    st.markdown("<div style='height:0.6rem'></div>", unsafe_allow_html=True)
     page_hero()
 
     message_to_analyze = ""
 
     with st.container(border=True):
         st.markdown(
-            '<div class="panel-copy">Clean, easy to read, and responsive on both mobile and desktop.</div>',
+            '<div class="panel-copy">Enter an email or text message below. ScamShield will analyze it for possible scam warning signs.</div>',
             unsafe_allow_html=True,
         )
 
@@ -416,6 +419,7 @@ Message to analyze:
 
 # Page 2 - Result page
 def result_page():
+    st.markdown("<div style='height:0.6rem'></div>", unsafe_allow_html=True)
     page_hero(copy="Your scan is complete. Review the risk level, warning signs, and recommendation below.")
 
     result = st.session_state.get("result")
@@ -472,6 +476,7 @@ def result_page():
 
 # Page 3 - Error page
 def error_page():
+    st.markdown("<div style='height:0.6rem'></div>", unsafe_allow_html=True)
     page_hero(copy="ScamShield had a problem communicating with the Ollama AI service.")
 
     with st.container(border=True):
