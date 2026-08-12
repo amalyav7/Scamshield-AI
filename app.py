@@ -211,6 +211,61 @@ st.markdown(
     }
 
 
+
+    .risk-center {
+        text-align: center;
+        margin-top: 0.1rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .risk-title {
+        font-size: 1.45rem;
+        font-weight: 700;
+        line-height: 1.05;
+        color: var(--text);
+    }
+
+    .st-key-result_panel [data-testid="stAlert"] {
+        text-align: center !important;
+    }
+
+    .st-key-result_panel [data-testid="stAlert"] p {
+        text-align: center !important;
+        width: 100% !important;
+        font-weight: 700 !important;
+    }
+
+
+    .recommendation-center {
+        text-align: center;
+        margin-top: 0.1rem;
+        margin-bottom: 0.15rem;
+    }
+
+    .recommendation-title {
+        font-size: 1.45rem;
+        font-weight: 700;
+        line-height: 1.05;
+        color: var(--text);
+    }
+
+    .st-key-result_panel [data-testid="stAlert"] p {
+        text-align: center !important;
+    }
+
+
+    .st-key-result_panel h3 + div,
+    .st-key-result_panel h3 + p {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+
+    .st-key-result_panel p {
+        margin-top: 0 !important;
+        margin-bottom: 0.08rem !important;
+        line-height: 1.12 !important;
+    }
+
     /* Tighter spacing on successful result output */
     .st-key-result_panel {
         width: calc(100% - 1.6rem) !important;
@@ -227,13 +282,13 @@ st.markdown(
     }
 
     .st-key-result_panel [data-testid="stVerticalBlock"] {
-        gap: 0.42rem !important;
+        gap: 0.22rem !important;
     }
 
     .st-key-result_panel h3 {
-        margin-top: 0.15rem !important;
-        margin-bottom: 0.15rem !important;
-        line-height: 1.05 !important;
+        margin-top: 0.08rem !important;
+        margin-bottom: 0.04rem !important;
+        line-height: 1.02 !important;
     }
 
     .st-key-result_panel p {
@@ -485,7 +540,7 @@ def result_page():
             warning_signs = result.get("warning_signs", [])
             recommendation = result.get("recommendation", "No recommendation available.")
 
-            st.subheader("Risk Level")
+            st.markdown('<div class="risk-center"><div class="risk-title">Risk Level</div></div>', unsafe_allow_html=True)
             if risk_level == "LOW":
                 st.success("LOW RISK")
             elif risk_level == "MEDIUM":
@@ -504,7 +559,7 @@ def result_page():
                 st.write(f"• {warning_signs}")
 
             st.divider()
-            st.subheader("Recommendation")
+            st.markdown('<div class="recommendation-center"><div class="recommendation-title">Recommendation</div></div>', unsafe_allow_html=True)
             st.info(recommendation)
 
             st.divider()
