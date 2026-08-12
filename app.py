@@ -16,20 +16,33 @@ st.markdown(
     """
     <style>
     :root {
-        --page-yellow: #FFF8D8;
-        --outer-card: #FFFBE9;
-        --header-sage: #EEF2D6;
-        --panel-sage: #DFE8C4;
-        --input-sage: #EEF3DC;
-        --button-sage: #C9DCA4;
-        --border-sage: #AFC18C;
-        --forest: #2E5A24;
-        --forest-dark: #24491D;
-        --ink: #1F2B1D;
+        /* Base colors from your reference images */
+        --butter-yellow: #FDEC80;
+        --olive-green: #566B30;
+
+        /* Coordinating shades */
+        --page-yellow: #FDF0A0;
+        --outer-card: #FFF8D2;
+        --header-sage: #E8EDCD;
+        --panel-sage: #D7E2B9;
+        --input-sage: #EEF2DB;
+        --button-sage: #C6D79C;
+        --button-sage-hover: #B8CC89;
+        --border-sage: #91A566;
+        --forest: #566B30;
+        --forest-dark: #3F5122;
+        --ink: #26331A;
+    }
+
+    html, body, .stApp,
+    .stApp button, .stApp input, .stApp textarea,
+    .stApp [data-baseweb="select"], .stApp label,
+    .stApp p, .stApp span, .stApp div {
+        font-family: "Aptos", "Inter", "Segoe UI", Arial, sans-serif !important;
     }
 
     .stApp {
-        background: linear-gradient(180deg, #FFF9DF 0%, var(--page-yellow) 100%);
+        background: linear-gradient(180deg, #FFF5B5 0%, var(--butter-yellow) 100%);
         color: var(--ink);
     }
 
@@ -49,7 +62,7 @@ st.markdown(
     /* OUTER CARD - target by Streamlit key so styling is reliable */
     .st-key-main_card {
         background: var(--outer-card) !important;
-        border: 1.5px solid var(--border-sage) !important;
+        border: 2px solid rgba(86, 107, 48, 0.40) !important;
         border-radius: 30px !important;
         box-shadow: 0 12px 30px rgba(55, 77, 42, 0.08) !important;
         overflow: hidden !important;
@@ -61,7 +74,7 @@ st.markdown(
 
     /* HEADER AREA INSIDE OUTER CARD */
     .scam-header {
-        background: linear-gradient(180deg, #EEF2D6 0%, #F3F5DE 100%);
+        background: linear-gradient(180deg, #E5EBC8 0%, #F2F3D8 100%);
         text-align: center;
         padding: 2.4rem 2rem 2rem;
         margin: 0;
@@ -102,7 +115,7 @@ st.markdown(
 
     .header-divider {
         height: 1px;
-        background: rgba(184, 200, 155, 0.58);
+        background: rgba(86, 107, 48, 0.26);
         margin: 0;
     }
 
@@ -168,24 +181,28 @@ st.markdown(
     }
 
     .stButton > button {
-        min-height: 64px;
-        border-radius: 10px !important;
-        font-weight: 750 !important;
-        font-size: 1.2rem !important;
+        min-height: 68px;
+        border-radius: 12px !important;
+        font-weight: 800 !important;
+        font-size: 1.25rem !important;
+        letter-spacing: 0.01em !important;
     }
 
     /* Analyze button: LIGHT GREEN, as requested */
     .st-key-analyze_button button {
+        min-height: 72px !important;
         background: var(--button-sage) !important;
-        border: 1.5px solid var(--border-sage) !important;
-        color: #20351B !important;
-        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.12) !important;
+        border: 2px solid var(--border-sage) !important;
+        color: var(--forest-dark) !important;
+        font-size: 1.35rem !important;
+        font-weight: 850 !important;
+        box-shadow: 0 6px 14px rgba(86, 107, 48, 0.14) !important;
     }
 
     .st-key-analyze_button button:hover {
-        background: #BDD493 !important;
-        color: #172913 !important;
-        border-color: #9EB67A !important;
+        background: var(--button-sage-hover) !important;
+        color: #2F3E1B !important;
+        border-color: var(--forest) !important;
     }
 
     .stButton > button {
@@ -196,10 +213,13 @@ st.markdown(
     }
 
     .st-key-analyze_button button {
+        min-height: 72px !important;
         background: var(--button-sage) !important;
-        border: 1.5px solid var(--border-sage) !important;
-        color: #20351B !important;
-        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.12) !important;
+        border: 2px solid var(--border-sage) !important;
+        color: var(--forest-dark) !important;
+        font-size: 1.35rem !important;
+        font-weight: 850 !important;
+        box-shadow: 0 6px 14px rgba(86, 107, 48, 0.14) !important;
     }
 
     [data-testid="stAlert"] {
@@ -342,7 +362,7 @@ Message: {message}
             left, center, right = st.columns([0.8, 2.2, 0.8])
             with center:
                 analyze_clicked = st.button(
-                    "🔍 Analyze Message", use_container_width=True, key="analyze_button"
+                    "Analyze Message", use_container_width=True, key="analyze_button"
                 )
 
     if analyze_clicked:
