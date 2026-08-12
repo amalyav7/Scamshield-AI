@@ -210,6 +210,50 @@ st.markdown(
         border-radius: 12px !important;
     }
 
+
+    /* Tighter spacing on successful result output */
+    .st-key-result_panel {
+        width: calc(100% - 1.6rem) !important;
+        max-width: calc(100% - 1.6rem) !important;
+        margin: 0 auto 0.9rem auto !important;
+        background: var(--section-fill-2) !important;
+        border: 1.5px solid rgba(170,182,137,0.95) !important;
+        border-radius: 18px !important;
+        overflow: hidden !important;
+    }
+
+    .st-key-result_panel > div {
+        padding: 0.9rem 1rem 1rem !important;
+    }
+
+    .st-key-result_panel [data-testid="stVerticalBlock"] {
+        gap: 0.42rem !important;
+    }
+
+    .st-key-result_panel h3 {
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.15rem !important;
+        line-height: 1.05 !important;
+    }
+
+    .st-key-result_panel p {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        line-height: 1.18 !important;
+    }
+
+    .st-key-result_panel [data-testid="stAlert"] {
+        margin-top: 0.1rem !important;
+        margin-bottom: 0.1rem !important;
+        padding-top: 0.55rem !important;
+        padding-bottom: 0.55rem !important;
+    }
+
+    .st-key-result_panel hr {
+        margin-top: 0.35rem !important;
+        margin-bottom: 0.35rem !important;
+    }
+
     @media (max-width: 640px) {
         .block-container {
             padding-top: 1.3rem;
@@ -242,14 +286,16 @@ st.markdown(
             margin-top: 0.6rem;
         }
 
-        .st-key-input_panel {
+        .st-key-input_panel,
+        .st-key-result_panel {
             width: calc(100% - 0.9rem) !important;
             max-width: calc(100% - 0.9rem) !important;
             border-radius: 14px !important;
             margin: 0 auto 0.7rem auto !important;
         }
 
-        .st-key-input_panel > div {
+        .st-key-input_panel > div,
+        .st-key-result_panel > div {
             padding: 0.85rem 0.8rem 0.95rem !important;
         }
 
@@ -424,7 +470,7 @@ Message to analyze:
 def result_page():
     with st.container(border=True, key="main_card"):
         render_header("Your scan is complete. Review the results below.")
-        with st.container(border=True, key="input_panel"):
+        with st.container(border=True, key="result_panel"):
             result = st.session_state.get("result")
             if result is None:
                 st.error("No analysis result was found.")
