@@ -45,8 +45,8 @@ st.markdown(
         color: var(--ink);
     }
 
-    /* OUTER CARD */
-    [data-testid="stVerticalBlockBorderWrapper"] {
+    /* OUTER CARD - target by Streamlit key so styling is reliable */
+    .st-key-main_card {
         background: var(--outer-card) !important;
         border: 1.5px solid var(--border-sage) !important;
         border-radius: 30px !important;
@@ -54,8 +54,7 @@ st.markdown(
         overflow: hidden !important;
     }
 
-    /* Remove excessive Streamlit padding from the outer card */
-    [data-testid="stVerticalBlockBorderWrapper"] > div {
+    .st-key-main_card > div {
         padding: 0 !important;
     }
 
@@ -111,20 +110,18 @@ st.markdown(
         height: 1.4rem;
     }
 
-    /* NESTED GREEN INPUT PANEL */
-    [data-testid="stVerticalBlockBorderWrapper"]
-    [data-testid="stVerticalBlockBorderWrapper"] {
-        margin: 0 1.4rem 1.4rem !important;
-        background: linear-gradient(180deg, #DCE9B8 0%, #D6E4AE 100%) !important;
-        border: 2px solid #AFC388 !important;
-        border-radius: 22px !important;
-        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18) !important;
+    /* GREEN BOX AROUND MESSAGE TYPE + ANALYZE BUTTON */
+    .st-key-input_panel {
+        margin: 0 2rem 2rem !important;
+        background: #D7E7B0 !important;
+        border: 2px solid #9FB977 !important;
+        border-radius: 24px !important;
+        box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22) !important;
         overflow: visible !important;
     }
 
-    [data-testid="stVerticalBlockBorderWrapper"]
-    [data-testid="stVerticalBlockBorderWrapper"] > div {
-        padding: 1.7rem 1.8rem 1.8rem !important;
+    .st-key-input_panel > div {
+        padding: 2.4rem 2.6rem 2.5rem !important;
     }
 
     .stSelectbox label,
@@ -165,19 +162,38 @@ st.markdown(
     }
 
     .stButton > button {
-        min-height: 58px;
-        border: none !important;
-        border-radius: 8px !important;
+        min-height: 64px;
+        border-radius: 10px !important;
+        font-weight: 750 !important;
+        font-size: 1.2rem !important;
+    }
+
+    /* Analyze button: LIGHT GREEN, as requested */
+    .st-key-analyze_button button {
+        background: #BFD891 !important;
+        border: 1.5px solid #91AD66 !important;
+        color: #20351B !important;
+        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.16) !important;
+    }
+
+    .st-key-analyze_button button:hover {
+        background: #B2CF7C !important;
+        color: #172913 !important;
+        border-color: #7F9F55 !important;
+    }
+
+    .stButton > button {
         background: linear-gradient(90deg, var(--forest) 0%, var(--forest-dark) 100%) !important;
         color: white !important;
-        font-weight: 700 !important;
-        font-size: 1.15rem !important;
+        border: none !important;
         box-shadow: 0 5px 12px rgba(36, 73, 29, 0.16);
     }
 
-    .stButton > button:hover {
-        background: var(--forest-dark) !important;
-        color: white !important;
+    .st-key-analyze_button button {
+        background: #BFD891 !important;
+        border: 1.5px solid #91AD66 !important;
+        color: #20351B !important;
+        box-shadow: 0 5px 12px rgba(76, 104, 50, 0.16) !important;
     }
 
     [data-testid="stAlert"] {
@@ -191,7 +207,7 @@ st.markdown(
             padding-right: 0.7rem;
         }
 
-        [data-testid="stVerticalBlockBorderWrapper"] {
+        .st-key-main_card {
             border-radius: 18px !important;
         }
 
@@ -211,15 +227,13 @@ st.markdown(
             font-size: 0.9rem;
         }
 
-        [data-testid="stVerticalBlockBorderWrapper"]
-        [data-testid="stVerticalBlockBorderWrapper"] {
+        .st-key-input_panel {
             margin: 0 0.7rem 0.7rem !important;
             border-radius: 18px !important;
         }
 
-        [data-testid="stVerticalBlockBorderWrapper"]
-        [data-testid="stVerticalBlockBorderWrapper"] > div {
-            padding: 1rem !important;
+        .st-key-input_panel > div {
+            padding: 1.4rem !important;
         }
     }
     </style>
@@ -270,13 +284,13 @@ def scan_page():
     message_to_analyze = ""
 
     # REAL Streamlit outer container
-    with st.container(border=True):
+    with st.container(border=True, key="main_card"):
         render_header(
             "Enter an email or text message below. ScamShield will analyze it for possible scam warning signs."
         )
 
         # REAL nested Streamlit container: this is the green box around ALL inputs
-        with st.container(border=True):
+        with st.container(border=True, key="input_panel"):
             message_type = st.selectbox(
                 "Message Type",
                 ["Select Message Type", "Email", "Text Message"],
@@ -320,7 +334,7 @@ Message: {message}
             left, center, right = st.columns([0.8, 2.2, 0.8])
             with center:
                 analyze_clicked = st.button(
-                    "🔍 Analyze Message", use_container_width=True
+                    "🔍 Analyze Message", use_container_width=True, key="analyze_button"
                 )
 
     if analyze_clicked:
