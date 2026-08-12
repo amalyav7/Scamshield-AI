@@ -15,8 +15,8 @@ st.markdown(
 
     :root {
         --page-yellow: #F7EFAF;
-        --page-yellow-soft: #F3E78E;
-        --outer-card: #F5F0CF;
+        --page-yellow-soft: #F5F0CF;
+        --outer-card: #F3E78E;
         --section-fill: #E6E9CC;
         --section-fill-2: #E9ECD3;
         --input-fill: #E7EBCF;
