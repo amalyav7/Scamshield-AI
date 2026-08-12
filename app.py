@@ -137,10 +137,19 @@ st.markdown(
         color: var(--text) !important;
     }
 
-    div[data-baseweb="select"] > div,
+    div[data-baseweb="select"] > div {
+        background: var(--input-fill) !important;
+        border: 1.4px solid var(--border) !important;
+        border-radius: 8px !important;
+        color: var(--text) !important;
+        box-shadow: none !important;
+        font-size: 1rem !important;
+        font-weight: 600 !important;
+    }
+
     .stTextInput input,
     .stTextArea textarea {
-        background: var(--input-fill) !important;
+        background: #FFFFFF !important;
         border: 1.4px solid var(--border) !important;
         border-radius: 8px !important;
         color: var(--text) !important;
